@@ -11,8 +11,8 @@ router.get("/api/workouts", (req, res) => {
         });
 });
 
-router.put("/api/workouts/:id", ({ params }, res) => {
-    Workout.insertMany(params.id)
+router.put("/api/workouts/:id", ({ params, body }, res) => {
+    Workout.findByIdAndUpdate(params.id, body.Workout)
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
