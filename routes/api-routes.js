@@ -11,6 +11,16 @@ router.get("/api/workouts", (req, res) => {
         });
 });
 
+router.put("/api/workouts/:id", ({ params }, res) => {
+    Workout.insertMany(params.id)
+        .then(dbWorkout => {
+            res.json(dbWorkout);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+});
+
 router.get("/api/exercise/:id", (req, res) => {
     Workout.find({})
         .sort({ date: -1 })
@@ -31,6 +41,8 @@ router.post("/api/exercise", ({ body }, res) => {
             res.status(400).json(err);
         });
 });
+
+
 
 
 
