@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(morgan('combined'));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mongoose_skeleton", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true,
     useFindAndModify: false
 });
