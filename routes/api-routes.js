@@ -33,7 +33,7 @@ router.post("/api/workouts", ({ body }, res) => {
 
 router.get("/api/workouts/range", (req, res) => {
     Workout.find({})
-        .sort({ date: -1 })
+        // .sort({ date: -1 })
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
@@ -42,9 +42,9 @@ router.get("/api/workouts/range", (req, res) => {
         });
 });
 
-
-router.get("/api/exercise", (req, res) => {
-    Workout.find({})
+router.get("/api/exercise/:id", ({ params }, res) => {
+    Workout.find(params.id)
+        // .sort({ date: -1 })
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
@@ -53,9 +53,8 @@ router.get("/api/exercise", (req, res) => {
         });
 });
 
-// router.get("/api/exercise/:id", (req, res) => {
+// router.get("/api/exercise", (req, res) => {
 //     Workout.find({})
-//         .sort({ date: -1 })
 //         .then(dbWorkout => {
 //             res.json(dbWorkout);
 //         })
@@ -63,5 +62,7 @@ router.get("/api/exercise", (req, res) => {
 //             res.status(400).json(err);
 //         });
 // });
+
+
 
 module.exports = router;
