@@ -22,14 +22,14 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cluster0',
 );
 
 
-// const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://ggfalloon:M@dmik!2@cluster0.ydllq.mongodb.net/cluster0?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-// client.connect(err => {
-//     const collection = client.db("test").collection("devices");
-//     // perform actions on the collection object
-//     client.close();
-// });
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://ggfalloon:M@dmik!2@cluster0.ydllq.mongodb.net/cluster0?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+    const collection = client.db("test").collection("devices");
+    // perform actions on the collection object
+    client.close();
+});
 
 
 // routes
