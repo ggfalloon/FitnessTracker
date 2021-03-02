@@ -12,10 +12,25 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(morgan('combined'));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-    useNewUrlParser: true,
-    useFindAndModify: false
-});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cluster0',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+    }
+);
+
+
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://ggfalloon:M@dmik!2@cluster0.ydllq.mongodb.net/cluster0?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// client.connect(err => {
+//     const collection = client.db("test").collection("devices");
+//     // perform actions on the collection object
+//     client.close();
+// });
+
 
 // routes
 app.use(require("./routes/api-routes.js"));
