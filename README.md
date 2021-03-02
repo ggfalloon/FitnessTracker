@@ -1,4 +1,4 @@
-# FitnessTracker
+# Fitness Tracker
 
 ## Description
 Keep up with your workout plans and exercises. Check your progress in the dashboard so that you can quickly reach your fitness goals. 
