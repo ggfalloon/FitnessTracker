@@ -12,28 +12,7 @@ router.get("/api/workouts", (req, res) => {
 });
 
 router.put("/api/workouts/:id", ({ params, body }, res) => {
-    Workout.findByIdAndUpdate(params.id, body.Workout)
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.status(400).json(err);
-        });
-});
-
-router.get("/api/exercise/:id", (req, res) => {
-    Workout.find({})
-        .sort({ date: -1 })
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.status(400).json(err);
-        });
-});
-
-router.post("/api/exercise", ({ body }, res) => {
-    Workout.insertMany(body)
+    Workout.findByIdAndUpdate(params.id, { $push: { exercises: body } })
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
@@ -52,7 +31,7 @@ router.post("/api/workouts", ({ body }, res) => {
         });
 });
 
-router.get("/api/workouts/range", ({ body }, res) => {
+router.get("/api/workouts/range", (req, res) => {
     Workout.find({})
         .sort({ date: -1 })
         .then(dbWorkout => {
@@ -64,12 +43,19 @@ router.get("/api/workouts/range", ({ body }, res) => {
 });
 
 
+router.get("/api/exercise", (req, res) => {
+    Workout.find({})
+        .then(dbWorkout => {
+            res.json(dbWorkout);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+});
 
-
-
-
-// router.post("/api/workouts", ({ body }, res) => {
-//     Workout.insertMany(body)
+// router.get("/api/exercise/:id", (req, res) => {
+//     Workout.find({})
+//         .sort({ date: -1 })
 //         .then(dbWorkout => {
 //             res.json(dbWorkout);
 //         })
@@ -77,19 +63,5 @@ router.get("/api/workouts/range", ({ body }, res) => {
 //             res.status(400).json(err);
 //         });
 // });
-
-
-
-
-
-// router.get("api/workouts/range", (req, res) => {
-//     Workout.find({})
-//         .then(dbWorkout => {
-//             res.json(dbWorkout);
-//         })
-//         .catch(err => {
-//             res.status(400).json(err);
-//         });
-// })
 
 module.exports = router;
