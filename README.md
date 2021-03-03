@@ -21,7 +21,7 @@ Keep up with your workout plans and exercises. Check your progress in the dashbo
 
 ## Usage
 
-URL - 
+URL - https://arcane-fortress-88180.herokuapp.com/
 
 When the user loads the page, they are presented with the option to add exercises to an existing workout or start a new one.
 
